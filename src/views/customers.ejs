@@ -1,0 +1,93 @@
+<%- include("partials/_header") %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-7">
+      <table class="table table-dark table-bordered table-hover">
+        <thead>
+          <tr>
+            <td>idMunicipio</td>
+            <td>nombre_municipio</td>
+            <td>nombre_depto</td>
+            <td>fecha_fundacion</td>
+            <td>colores_bandera</td>
+            <td>nombre_himno_oficial</td>
+            <td>idPersona_gobernante</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (municipio) { %> <% for(var i = 0; i < municipio.length; i++) {
+          %>
+          <tr>
+            <td><%= (i + 1) %></td>
+            <td><%= municipio[i].nombre_municipio %></td>
+            <td><%= municipio[i].nombre_depto %></td>
+            <td><%= municipio[i].fecha_fundacion %></td>
+            <td><%= municipio[i].colores_bandera %></td>
+            <td><%= municipio[i].nombre_himno_oficial %></td>
+            <td><%= municipio[i].idPersona_gobernante %></td>
+            <td class="d-flex gap-2">
+              <a href="/update/<%= Municipio[i].idMunicipio %>" class="btn btn-info">
+                Edit
+              </a>
+              <a href="/delete/<%= Municipio[i].idMunicipio %>" class="btn btn-danger">
+                Delete
+              </a>
+            </td>
+          </tr>
+          <% } %> <% } %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-5">
+      <div class="card-body">
+        <form action="/add" method="POST">
+          <input
+            type="text"
+            name="nombre_municipio"
+            placeholder="nombre_municipio"
+            class="form-control mb-2"
+            autofocus
+          />
+          <input
+            type="text"
+            name="nombre_depto"
+            placeholder="nombre_depto"
+            class="form-control mb-2"
+          />
+          <input
+            type="datetime"
+            name="fecha_fundacion"
+            placeholder="fecha_fundacion"
+            class="form-control mb-2"
+          />
+
+          <input
+            type="text"
+            name="colores_bandera"
+            placeholder="colores_bandera"
+            class="form-control mb-2"
+          />
+
+          <input
+            type="text"
+            name="nombre_himno_oficial"
+            placeholder="nombre_himno_oficial"
+            class="form-control mb-2"
+          />
+
+          <input
+            type="number"
+            name="idPersona_gobernante"
+            placeholder="idPersona_gobernante"
+            class="form-control mb-2"
+          />
+
+          <button type="submit" class="btn btn-info">save Municipio</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/_footer") %>

@@ -1,31 +1,27 @@
-const express = require("express");
-const path = require("path");
-const morgan = require("morgan");
-const myConnection = require("express-myconnection");
+import express from "express";
+import path from "path";
+import morgan from "morgan";
 
-//initializations
-const app = express();  
+import MunicipioRoutes from "./routes/municipio.routes.js";
+import { fileURLToPath } from "url";
 
-//settings
-app.set('port', process.env.PORT || 3000);
+const app = express();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// settings
+app.set("port", process.env.PORT || 3000);
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-app.set('views', path.join(__dirname, 'views'));
 
-//middlewares
-// usar morgan para ver las peticiones que llegan al servidor
-app.use(morgan('dev'));
-//iniciar servidor mysql y configurar bd
-app.use(myConnection(mysql, {
-    host: 'localhost',
-    user: 'root',
-    password: 'admin',
-    port: 3306,
-    database: 'lab0_crud'
+// middlewares
+app.use(morgan("dev"));
+app.use(express.urlencoded({ extended: false }));
 
-}, 'single'));
+// routes
+app.use(MunicipioRoutes);
 
-//routes
+// static files
+app.use(express.static(path.join(__dirname, "public")));
 
-app.listen(app.get('port'), () =>{
-    console.log("Server is running on port ")
-});
+// starting the server
+export default app;
