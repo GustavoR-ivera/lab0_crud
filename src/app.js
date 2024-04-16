@@ -27,12 +27,16 @@ app.use(myConnection(mysql, {
     database: 'lab0_crud'
 
 }, 'single'));
+app.use(express.urlencoded({extended: false})); //para recibir datos de formularios
 
 
+//pagina principal
+app.get('/', (req, res) => {
+    res.render('principal_page.ejs');
+}); 
 
 //routes
-//app.use('/', )
-app.use('/persona', personaRoutes);
+app.use('/personas', personaRoutes); //rutas modulo personas
 
 
 
