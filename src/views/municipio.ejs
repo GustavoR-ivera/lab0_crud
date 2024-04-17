@@ -16,22 +16,22 @@
           </tr>
         </thead>
         <tbody>
-          <% if (municipio) { %> <% for(var i = 0; i < municipio.length; i++) {
+          <% if (data) { %> <% for(var i = 0; i < data.length; i++) {
           %>
           <tr>
             <td><%= (i + 1) %></td>
-            <td><%= municipio[i].nombre_municipio %></td>
-            <td><%= municipio[i].nombre_depto %></td>
-            <td><%= municipio[i].fecha_fundacion %></td>
-            <td><%= municipio[i].colores_bandera %></td>
-            <td><%= municipio[i].nombre_himno_oficial %></td>
-            <td><%= municipio[i].idPersona_gobernante %></td>
+            <td><%= data[i].nombre_municipio %></td>
+            <td><%= data[i].nombre_depto %></td>
+            <td><%= data[i].fecha_fundacion %></td>
+            <td><%= data[i].colores_bandera %></td>
+            <td><%= data[i].nombre_himno_oficial %></td>
+            <td><%= data[i].idPersona_gobernante %></td>
             <td class="d-flex gap-2">
-              <a href="/update/<%= Municipio[i].idMunicipio %>" class="btn btn-info">
+              <a href="/update/<%= data[i].idMunicipio %>" class="btn btn-info">
                 Edit
               </a>
-              <a href="/delete/<%= Municipio[i].idMunicipio %>" class="btn btn-danger">
-                Delete
+              <a href="/delete/<%= data[i].idMunicipio %>" class="btn btn-danger">
+          data
               </a>
             </td>
           </tr>
@@ -83,7 +83,7 @@
             class="form-control mb-2"
           />
 
-          <button type="submit" class="btn btn-info">save Municipio</button>
+          <button type="submit" class="btn btn-info">guardar Municipio</button>
         </form>
       </div>
     </div>
