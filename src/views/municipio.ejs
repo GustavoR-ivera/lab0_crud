@@ -1,9 +1,14 @@
 <%- include("partials/_header") %>
 
+
+<a href="/municipio/resgister"  > Registra Datos</a>
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-7">
+
+      <% if (data.length > 0) { %>
       <table class="table table-dark table-bordered table-hover">
+        
         <thead>
           <tr>
             <td>idMunicipio</td>
@@ -16,8 +21,8 @@
           </tr>
         </thead>
         <tbody>
-          <% if (data) { %> <% for(var i = 0; i < data.length; i++) {
-          %>
+
+           <% for(var i = 0; i < data.length; i++) {%>
           <tr>
             <td><%= (i + 1) %></td>
             <td><%= data[i].nombre_municipio %></td>
@@ -35,59 +40,11 @@
               </a>
             </td>
           </tr>
-          <% } %> <% } %>
+          <% } %> 
         </tbody>
       </table>
+      <% } %>
     </div>
-    <div class="col-md-5">
-      <div class="card-body">
-        <form action="/add" method="POST">
-          <input
-            type="text"
-            name="nombre_municipio"
-            placeholder="nombre_municipio"
-            class="form-control mb-2"
-            autofocus
-          />
-          <input
-            type="text"
-            name="nombre_depto"
-            placeholder="nombre_depto"
-            class="form-control mb-2"
-          />
-          <input
-            type="datetime"
-            name="fecha_fundacion"
-            placeholder="fecha_fundacion"
-            class="form-control mb-2"
-          />
 
-          <input
-            type="text"
-            name="colores_bandera"
-            placeholder="colores_bandera"
-            class="form-control mb-2"
-          />
-
-          <input
-            type="text"
-            name="nombre_himno_oficial"
-            placeholder="nombre_himno_oficial"
-            class="form-control mb-2"
-          />
-
-          <input
-            type="number"
-            name="idPersona_gobernante"
-            placeholder="idPersona_gobernante"
-            class="form-control mb-2"
-          />
-
-          <button type="submit" class="btn btn-info">guardar Municipio</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 
 <%- include("partials/_footer") %>

@@ -6,16 +6,15 @@ controller.list = (req, res) => {
         if(err){
             return res.status(500).send("Algo salió mal al conectar con la bd");
         }
-        conn.query('select * from municipio where available = 1 limit 30', (err, rows) => {
+        conn.query('select * from municipio', (err, rows) => {
             if(err){
-                return res.status(500).send("Algo salió mal consultando las personas");
+                return res.status(500).send("Algo salió mal consultando las municipio");
             }
-           
             if(rows){
-                
-                res.render('municipio+-.ejs', {
-                    data: rows
-                });
+            console.log(rows);
+            res.render('municipio', {
+                     data: rows
+                 });
             }
         });
     });
@@ -37,7 +36,7 @@ controller.register = (req, res) => {
         }
         else{
             //validar registro previo de persona (con estado activo)
-            const q = "select * from municipio where doc_identidad = ? and available = 1";
+            const q = "select * from municipio where idMunicipio = ? and available = 1";
             conn.query(q, [data.doc_identidad], (err, rows) => {
             if(err){
                 return res.status(500).json(err);

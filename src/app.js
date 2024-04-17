@@ -31,9 +31,9 @@ app.use(express.urlencoded({extended: false})); //para recibir datos de formular
 
 
 //pagina principal
-app.get('/', (req, res) => {
-    res.render('municipio.ejs');
-}); 
+// app.get('/', (req, res) => {
+//     res.render('municipio.ejs');
+// }); 
 
 //routes
 app.use('/municipios', municipioRoutes); //rutas modulo personas
