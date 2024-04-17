@@ -1,56 +1,63 @@
 <%- include("partials/_header"); %>
 
 <div class="container">
-    <a href="/personas/form_registro_persona">
+    <h3 style="text-align: center;">Gestion de personas</h3>
+    <!--enlace para redireccionar al form de registro-->
+    <a href="/personas/form_registro_persona" style="color: blue; text-decoration: none;">
         Registrar nueva persona
     </a>
+
     <div class="row mt-2 ml-0" >
         <!--tabla con listado de personas-->
         <div class="col ">
-            <table style="margin: auto; background-color: white; border: solid 1px black; padding: 10px;">
-                <!--titulos tabla-->
-                <thead style="border: solid 1px black; padding: 20px; text-align: center; background-color: lightcyan;">
-                    <tr>
-                        <th style="border: solid 1px black;">Id</th>
-                        <th style="border: solid 1px black;">Tipo Doc.</th>
-                        <th style="border: solid 1px black;"> Doc. identidad</th>
-                        <th style="border: solid 1px black;">Nombres</th>
-                        <th style="border: solid 1px black;">Apellidos</th>
-                        <th style="border: solid 1px black;">Fecha nacimiento</th>
-                        <th style="border: solid 1px black;">Telefono</th>
-                        <th style="border: solid 1px black;">Email</th>
-                        <th style="border: solid 1px black;">Ocupacion</th>
-                        <th style="border: solid 1px black;">Sexo</th>
-                        <th style="border: solid 1px black;">Acciones</th>
+            <% if (data.length > 0) { %>
+                <table style="margin: auto; background-color: white; border: solid 1px black; padding: 10px;">
+                    <!--titulos tabla-->
+                    <thead style="border: solid 1px black; padding: 20px; text-align: center; background-color: lightcyan;">
+                        <tr>
+                            <th style="border: solid 1px black;">Id</th>
+                            <th style="border: solid 1px black;">Tipo Doc.</th>
+                            <th style="border: solid 1px black;"> Doc. identidad</th>
+                            <th style="border: solid 1px black;">Nombres</th>
+                            <th style="border: solid 1px black;">Apellidos</th>
+                            <th style="border: solid 1px black;">Fecha nacimiento</th>
+                            <th style="border: solid 1px black;">Telefono</th>
+                            <th style="border: solid 1px black;">Email</th>
+                            <th style="border: solid 1px black;">Ocupacion</th>
+                            <th style="border: solid 1px black;">Sexo</th>
+                            <th style="border: solid 1px black;">Acciones</th>
 
-                    </tr>
-                </thead>
-                <!--cuerpo tabla-->
-                <tbody style="padding: 20px; text-align: center;">
-                    <!--validar si data != vacio-->
-                    <% if (data.length > 0) { %>
-                        <%  for (let i=0; i < data.length; i++) { %>
-                                <tr style="border: solid 1px lightgrey;">
-                                    <td style="border: solid 1px lightgrey;"> <%= data[i].idPersona %> </td>
-                                    <td style="border: solid 1px lightgrey;"> <%= data[i].tipo_doc %> </td>
-                                    <td style="border: solid 1px lightgrey;"> <%= data[i].doc_identidad  %> </td>
-                                    <td style="border: solid 1px lightgrey;"> <%= data[i].nombres  %> </td>
-                                    <td style="border: solid 1px lightgrey;"> <%= data[i].apellidos  %> </td>
-                                    <td style="border: solid 1px lightgrey;"> <%= data[i].fecha_nacimiento.toLocaleDateString() %> </td>
-                                    <td style="border: solid 1px lightgrey;"> <%= data[i].telefono  %> </td>
-                                    <td style="border: solid 1px lightgrey;"> <%= data[i].email  %> </td>
-                                    <td style="border: solid 1px lightgrey;"> <%= data[i].ocupacion  %> </td>
-                                    <td style="border: solid 1px lightgrey;"> <%= data[i].sexo  %> </td>
-                                    <td style="border: solid 1px lightgrey;">editar
-                                        eliminar
-                                    </td>
+                        </tr>
+                    </thead>
+                    <!--cuerpo tabla-->
+                    <tbody style="padding: 20px; text-align: center;">
+                        <!--validar si data != vacio-->
+                    <%  for (let i=0; i < data.length; i++) { %>
+                            <tr style="border: solid 1px lightgrey;">
+                                <td style="border: solid 1px lightgrey;"> <%= data[i].idPersona %> </td>
+                                <td style="border: solid 1px lightgrey;"> <%= data[i].tipo_doc %> </td>
+                                <td style="border: solid 1px lightgrey;"> <%= data[i].doc_identidad  %> </td>
+                                <td style="border: solid 1px lightgrey;"> <%= data[i].nombres  %> </td>
+                                <td style="border: solid 1px lightgrey;"> <%= data[i].apellidos  %> </td>
+                                <td style="border: solid 1px lightgrey;"> <%= data[i].fecha_nacimiento.toLocaleDateString() %> </td>
+                                <td style="border: solid 1px lightgrey;"> <%= data[i].telefono  %> </td>
+                                <td style="border: solid 1px lightgrey;"> <%= data[i].email  %> </td>
+                                <td style="border: solid 1px lightgrey;"> <%= data[i].ocupacion  %> </td>
+                                <td style="border: solid 1px lightgrey;"> <%= data[i].sexo  %> </td>
+                                <td style="border: solid 1px lightgrey;">
+                                    <a href="/personas/form_edicion_persona/<%= data[i].idPersona %>" 
+                                        style="text-decoration: none; color: green;">editar</a>
+                                    <a href="/personas/eliminar_persona/<%= data[i].idPersona %>"
+                                        style="text-decoration: none; color: red;">eliminar</a>
+                                </td>
 
-                                </tr>
-                        <%  } %>
-                    <% } %>
+                            </tr>
+                    <%  } %>
+                    </tbody>
+                </table>
+            <% } %>
 
-                </tbody>
-            </table>
+
         </div>
         
     </div>

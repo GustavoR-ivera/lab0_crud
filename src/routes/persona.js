@@ -7,17 +7,22 @@ const personaController = require('../controllers/personaController');
 //home page seccion personas
 router.get('/', personaController.list);
 
-//registrar persona
+//redireccion a form de registro de persona
 router.get('/form_registro_persona', (req, res) => {
     res.render('form_registro_persona.ejs');
 });
 
+//registrar persona
 router.post('/registrar_persona', personaController.register);
 
-//editar persona
-router.get('/editar_persona', (req, res) => {
-    res.send("editar persona ");
-});
+//editar persona -> renderizar form de edicion de persona
+router.get('/form_edicion_persona/:id', personaController.edit);
+
+//actualizar persona -> ejecuta consulta de actualizacion en bd 
+router.post('/actualizar_persona/:id', personaController.update);
+
+//eliminar persona
+router.get('/eliminar_persona/:id', personaController.delete);
 
 
 module.exports = router;
