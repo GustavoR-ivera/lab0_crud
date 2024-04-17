@@ -1,27 +1,47 @@
-import express from "express";
-import path from "path";
-import morgan from "morgan";
+const express = require("express");
+const path = require("path");
+const morgan = require("morgan");
+const mysql = require("mysql2");
+const myConnection = require("express-myconnection");
 
-import MunicipioRoutes from "./routes/municipio.routes.js";
-import { fileURLToPath } from "url";
+// import routes
+const personaRoutes = require('./routes/municipio.routes.js');
 
-const app = express();
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+//initializations
+const app = express();  
 
-// settings
-app.set("port", process.env.PORT || 3000);
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
+//settings
+app.set('port', process.env.PORT || 3000);
+app.set("view engine", "ejs"); //motor de plantillas
+app.set('views', path.join(__dirname, 'views')); //folder donde estan las vistas
 
-// middlewares
-app.use(morgan("dev"));
-app.use(express.urlencoded({ extended: false }));
+//middlewares
+// usar morgan para ver las peticiones que llegan al servidor
+app.use(morgan('dev'));
+//iniciar servidor mysql y configurar bd
+app.use(myConnection(mysql, {
+    host: 'localhost',
+    user: 'root',
+    password: 'admin',
+    port: 3306,
+    database: 'lab0_crud'
 
-// routes
-app.use(MunicipioRoutes);
+}, 'single'));
+app.use(express.urlencoded({extended: false})); //para recibir datos de formularios
 
-// static files
-app.use(express.static(path.join(__dirname, "public")));
 
-// starting the server
-export default app;
+//pagina principal
+app.get('/', (req, res) => {
+    res.render('principal_page.ejs');
+}); 
+
+//routes
+app.use('/personas', personaRoutes); //rutas modulo personas
+
+
+
+app.listen(app.get('port'), () =>{
+    console.log("Server is running on port {app.get('port')}")
+});
+
+module.exports = app;

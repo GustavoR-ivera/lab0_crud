@@ -1,17 +1,20 @@
-import { Router } from "express";
-import {
-  createMunicipio,
-  deleteMunicipio,
-  editMunicipio,
-  renderMunicipio,
-  updateMunicipio,
-} from "../controllers/MunicipioController.js";
-const router = Router();
+const express = require("express");
+const router = express.Router();
 
-router.get("/", renderMunicipio);
-router.post("/add", createMunicipio);
-router.get("/update/:id", editMunicipio);
-router.post("/update/:id", updateMunicipio);
-router.get("/delete/:id", deleteMunicipio);
+const municipioController = require('../controllers/municipioController');
 
-export default router;
+
+router.get('/', municipioController.list);
+
+
+router.get('/form_registro_persona', (req, res) => {
+    res.render('form_registro_persona.ejs');
+});
+
+router.get("/", municipioController.list);
+router.post("/add", municipioController.register);
+router.get("/update/:id", municipioController.edit);
+router.post("/update/:id", municipioController.update);
+router.get("/delete/:id", municipioController.delete);
+
+module.exports = router;
