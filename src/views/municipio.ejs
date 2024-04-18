@@ -1,7 +1,7 @@
 <%- include("partials/_header") %>
 
 
-<a href="/municipio/resgister"  > Registra Datos</a>
+<h3><a href="municipios/register"  > Registra Datos</a> 
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-7">
@@ -32,10 +32,10 @@
             <td><%= data[i].nombre_himno_oficial %></td>
             <td><%= data[i].idPersona_gobernante %></td>
             <td class="d-flex gap-2">
-              <a href="/update/<%= data[i].idMunicipio %>" class="btn btn-info">
+              <a href="/municipios/edit/<%= data[i].idMunicipio %>" class="btn btn-info">
                 Edit
               </a>
-              <a href="/delete/<%= data[i].idMunicipio %>" class="btn btn-danger">
+              <a href="/municipios/delete/<%= data[i].idMunicipio %>" class="btn btn-danger">
           data
               </a>
             </td>

@@ -4,15 +4,16 @@ const controller = {};
 controller.list = (req, res) => {
     req.getConnection((err, conn) =>{
         if(err){
+            console.log(err);
             return res.status(500).send("Algo salió mal al conectar con la bd");
         }
         conn.query('select * from municipio', (err, rows) => {
             if(err){
-                return res.status(500).send("Algo salió mal consultando las municipio");
+                return res.status(500).send("Algo salió mal consultando los municipios");
             }
             if(rows){
             console.log(rows);
-            res.render('municipio', {
+            res.render('municipio.ejs', {
                      data: rows
                  });
             }
@@ -32,18 +33,19 @@ controller.register = (req, res) => {
 
     req.getConnection((err, conn) => {
         if(err){
+            console.log(err);
             return res.status(500).send("Algo salió mal al conectar con la bd");
         }
         else{
             //validar registro previo de persona (con estado activo)
-            const q = "select * from municipio where idMunicipio = ? and available = 1";
+            const q = "select * from municipio where idMunicipio = ?";
             conn.query(q, [data.doc_identidad], (err, rows) => {
             if(err){
                 return res.status(500).json(err);
             }
             else if(rows.length > 0){
                 //console.log(rows);
-                return res.status(409).send("la persona ya se encuentra registrada");
+                return res.status(409).send("El municipio ya se encuentra registrado");
             }
             else{
                 // si la persona no esta registrada previamente, se procede a registrarla
@@ -66,14 +68,17 @@ controller.edit = (req, res) => {
     const id = req.params.id;
     req.getConnection((err, conn) => {
         if(err){
+            console.log(err);
             return res.status(500).send("Algo salió mal al conectar con la bd");
+            
         }
         else{
-            conn.query('select * from persona where idMunicipio = ?', [id], (err, rows) => {
+            conn.query('select * from municipio where idMunicipio = ?', id, (err, rows) => {
                 if(err){
+                    console.log(err);
                     return res.status(500).send("Algo salió mal al consultar el municipio");
                 }
-                //renderizar form de edicion pasando como parametros los datos de la persona
+                
                 res.render('municipio_edit.ejs', {
                     data: rows[0]
                 });
@@ -90,13 +95,16 @@ controller.update = (req, res) => {
 
     req.getConnection((err, conn) => {
         if(err){
+            console.log(err);
             return res.status(500).send("Algo salió mal al conectar con la bd");
+            
         }
         else{
             //validar si al editar los datos la persona usa un num_doc igual al de alguien ya registrado (con estado activo)
-            const q = "select * from municipio where id_municipio = ? and available = 1 and idPersona != ?";
+            const q = "select * from municipio where id_municipio = ?";
             conn.query(q, [data.idMunicipio, id], (err, rows) => {
             if(err){
+                
                 return res.status(500).json(err);
             }
             else if(rows.length > 0){
@@ -126,19 +134,16 @@ controller.delete = (req, res) => {
             return res.status(500).send("Algo salió mal al conectar con la bd");
         }
 
-        const q = 'update persona set available = 0, deleted_at = ? where idMunicipio = ?';
-        const d = Date.now();
-        const date = new Date(d); 
-        //const deleted_at = date.toLocaleDateString();
-        const deleted_at = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
+        const q = 'delete from municipio where idMunicipio = ?';
+        
 
         //res.json(deleted_at);
         
-        conn.query(q, [deleted_at, req.params.id], (err, rows) => {
+        conn.query(q,req.params.id, (err, rows) => {
             if(err){
                 return res.status(500).json(err).send("Algo salió mal al realizar esta accion");
             }
-            res.redirect('/municipio/');
+            res.redirect('/municipios');
         });
     });
 };

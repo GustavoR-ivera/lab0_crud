@@ -13,12 +13,9 @@ router.get('/form_registro_persona', (req, res) => {
 });
 
 router.get("/", municipioController.list);
-router.get("/register", (req, res) => {
-    res.render("municipioForm.ejs");
-
-});
+router.get("/register", (req, res) => {res.render("municipioForm.ejs");});
 router.post("/add", municipioController.register);
-router.get("/update/:id", municipioController.edit);
+router.get("/edit/:id", municipioController.edit);
 router.post("/update/:id", municipioController.update);
 router.get("/delete/:id", municipioController.delete);
 
