@@ -37,7 +37,7 @@ app.use(express.urlencoded({extended: false})); //para recibir datos de formular
 
 //routes
 app.use('/municipios', municipioRoutes); //rutas modulo personas
-=======
+
 app.get('/', (req, res) => {
     res.render('principal_page.ejs');
 }); 
