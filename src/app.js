@@ -23,11 +23,11 @@ app.set('views', path.join(__dirname, 'views')); //folder donde estan las vistas
 app.use(morgan('dev'));
 //iniciar servidor mysql y configurar bd
 app.use(myConnection(mysql, {
-    host: 'localhost',
-    user: 'admin',
-    password: 'admin',
-    port: 3306,
-    database: 'lab0_crud'
+    host: 'db-mysql-nyc3-03499-do-user-15730782-0.c.db.ondigitalocean.com',
+    user: 'doadmin',
+    password: 'AVNS_aKJcJHLJldDGvsun8vN',
+    port: 25060,
+    database: 'defaultdb'
 
 }, 'single'));
 app.use(express.urlencoded({extended: false})); //para recibir datos de formularios

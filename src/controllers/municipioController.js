@@ -100,8 +100,8 @@ controller.update = (req, res) => {
             
         }
         else{
-            //validar si al editar los datos la persona usa un num_doc igual al de alguien ya registrado (con estado activo)
-            const q = "select * from municipio where id_municipio = ?";
+            
+            const q = "select * from municipio where idMunicipio = ?";
             conn.query(q, [data.idMunicipio, id], (err, rows) => {
             if(err){
                 
@@ -109,12 +109,13 @@ controller.update = (req, res) => {
             }
             else if(rows.length > 0){
                 //console.log(rows);
-                return res.status(409).send("no es posible actualizar la info requerida (num_doc ya registrado)");
+                return res.status(409).send("no es posible actualizar la info requerida");
             }
             else{
                 // actualizar los datos de la persona
-                conn.query('update persona set ? where idPersona = ?', [data, id], (err, rows) => {
+                conn.query('update municipio set ? where idMunicipio = ?', [data, id], (err, rows) => {
                 if(err){
+                    console.log(err);
                    return res.status(500).send("Algo salió mal actualizando los datos");
                 }
                 res.redirect('/municipios');
