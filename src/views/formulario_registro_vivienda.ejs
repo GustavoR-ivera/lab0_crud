@@ -1,0 +1,43 @@
+<%- include('partials/_header') %>
+
+<div class = "col-md-7">
+    <table class = "table table-bordered table-hover">
+        <thead>
+            <th>idVivienda</th>
+            <th>fecha_construccion</th>
+            <th>direccion_primaria</th>
+            <th>direccion_secundaria</th>
+            <th>num_pisos</th>
+            <th>num_habitaciones</th>
+            <th>num_banos</th>
+            <th>tiene_garage</th>
+            <th>tiene_patio</th>
+            <th>tiene_terraza</th>
+            <th>municipio_idMunicipio</th>
+        </thead>
+        <tbody>
+            <%if (data) {%>
+                <%for(var i = 0; i < data.length; i++) {%>
+                <tr>
+                    <td><%= (i + 1)%></td>
+                    <td><%= data[i].fecha_construccion%></td>
+                    <td><%= data[i].direccion_primaria%></td>
+                    <td><%= data[i].direccion_secundaria%></td>
+                    <td><%= data[i].num_pisos%></td>
+                    <td><%= data[i].num_habitaciones%></td>
+                    <td><%= data[i].num_banos%></td>
+                    <td><%= data[i].tiene_garage%></td>
+                    <td><%= data[i].tiene_patio%></td>
+                    <td><%= data[i].tiene_terraza%></td>
+                    <td><%= data[i].municipio_idMunicipio%></td>
+                    <td>
+                        <a href = "/delete/<%= data[i].idVivienda%>" class ="btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                <%}%>
+            <%}%>
+        </tbody>
+    </table>
+
+</div>
+<%- include('partials/_footer') %>

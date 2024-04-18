@@ -1,0 +1,92 @@
+<%- include('partials/_header') %>
+
+<a href="formulario_registro_vivienda.ejs"></a>
+
+<div class = "container">
+    <div class = "row mt-5">
+        <div class = "col-md-7">
+            <table class = "table table-bordered table-hover">
+                <thead>
+                    <th>idVivienda</th>
+                    <th>fecha_construccion</th>
+                    <th>direccion_primaria</th>
+                    <th>direccion_secundaria</th>
+                    <th>num_pisos</th>
+                    <th>num_habitaciones</th>
+                    <th>num_banos</th>
+                    <th>tiene_garage</th>
+                    <th>tiene_patio</th>
+                    <th>tiene_terraza</th>
+                    <th>municipio_idMunicipio</th>
+                </thead>
+                <tbody>
+                    <%if (data) {%>
+                        <%for(var i = 0; i < data.length; i++) {%>
+                        <tr>
+                            <td><%= (i + 1)%></td>
+                            <td><%= data[i].fecha_construccion%></td>
+                            <td><%= data[i].direccion_primaria%></td>
+                            <td><%= data[i].direccion_secundaria%></td>
+                            <td><%= data[i].num_pisos%></td>
+                            <td><%= data[i].num_habitaciones%></td>
+                            <td><%= data[i].num_banos%></td>
+                            <td><%= data[i].tiene_garage%></td>
+                            <td><%= data[i].tiene_patio%></td>
+                            <td><%= data[i].tiene_terraza%></td>
+                            <td><%= data[i].municipio_idMunicipio%></td>
+                            <td>
+                                <a href = "/delete/<%= data[i].idVivienda%>" class ="btn btn-danger">Eliminar</a>
+                                <a href ="/update/<%= data[i].idVivienda%>" class ="btn btn-info">Modificar</a>
+                            </td>
+                        </tr>
+                        <%}%>
+                    <%}%>
+                </tbody>
+            </table>
+
+        </div>
+        <div class ="col-md-5">
+            <div class = "card">
+                <div class = "card-body">
+                    <form action="/add" method="post">
+                        <div class="form-group">
+                            <input type="date" name="fecha_construccion" placeholder="Fecha de construcción" class = "form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="direccion_primaria" placeholder="Direccion primaria" class = "form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="direccion_secundaria" placeholder="Direccion secundaria" class = "form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="num_pisos" placeholder="Número de pisos" class = "form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="num_habitaciones" placeholder="Número de habitaciones" class = "form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="num_banos" placeholder="Número de baños" class = "form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="tiene_garage" placeholder="¿Tiene garage?" class = "form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="tiene_patio" placeholder="¿Tiene patio?" class = "form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="tiene_terraza" placeholder="¿Tiene terraza?" class = "form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="Municipio_idMunicipio" placeholder="Municipio_idMunicipio" class = "form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary ">
+                            Guardar vivienda
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/_footer') %>
