@@ -1,0 +1,56 @@
+<%- include('partials/_header') %>
+
+<div class = "container mt-5">
+    <div class = "row">
+        <div class = "col-md-5">
+            <div class = "card">
+                <div class = "card-body">
+                    <form action="/viviendas/update/<%= data.idVivienda%>" method="post">
+                        <div class="form-group">
+                            <input type="date" name="fecha_construccion" value="<%= data.fecha_construccion.toISOString().split('T')[0] %>" class = "form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="direccion_primaria" value = "<%= data.direccion_primaria%>" class = "form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="direccion_secundaria" value = "<%=data.direccion_secundaria %>" class = "form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="num_pisos" value = "<%=data.num_pisos %>" class = "form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="num_habitaciones" value = "<%= data.num_habitaciones%>" class = "form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="num_banos" value = "<%=data.num_banos %>" class = "form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="tiene_garage" value = "<%=data.tiene_garage %>" class = "form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="tiene_patio" value = "<%=data.tiene_patio%>" class = "form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="tiene_terraza" value = "<%=data.tiene_terraza %>" class = "form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="municipio_idMunicipio" value = "<%= data.municipio_idMunicipio %>" class = "form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary ">
+                            Guardar vivienda
+                        </button>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<%- include('partials/_footer') %>

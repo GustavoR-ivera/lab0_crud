@@ -1,7 +1,8 @@
 const express = require("express");
 const path = require("path");
 const morgan = require("morgan");
-const mysql = require("mysql2");
+const mysql = require('mysql');
+const mysql2 = require("mysql2");
 const myConnection = require("express-myconnection");
 
 // import routes
@@ -12,6 +13,10 @@ const personaRoutes = require('./routes/persona');
 
 //initializations
 const app = express();  
+
+
+//importing routes
+const viviendaRoutes = require('./routes/vivienda')
 
 //settings
 app.set('port', process.env.PORT || 3000);

@@ -1,0 +1,45 @@
+<%- include('partials/_header') %>
+<div class ="col-md-5">
+    <div class = "card">
+        <div class = "card-body">
+            <h1>Formulario de registro de viviendas</h1>
+            <form action="/viviendas/add" method="post">
+                <div class="form-group">
+                    <input type="date" name="fecha_construccion" placeholder="Fecha de construcción" class = "form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="direccion_primaria" placeholder="Direccion primaria" class = "form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="direccion_secundaria" placeholder="Direccion secundaria" class = "form-control">
+                </div>
+                <div class="form-group">
+                    <input type="number" name="num_pisos" placeholder="Número de pisos" class = "form-control">
+                </div>
+                <div class="form-group">
+                    <input type="number" name="num_habitaciones" placeholder="Número de habitaciones" class = "form-control">
+                </div>
+                <div class="form-group">
+                    <input type="number" name="num_banos" placeholder="Número de baños" class = "form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="tiene_garage" placeholder="¿Tiene garage?" class = "form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="tiene_patio" placeholder="¿Tiene patio?" class = "form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="tiene_terraza" placeholder="¿Tiene terraza?" class = "form-control">
+                </div>
+                <div class="form-group">
+                    <input type="number" name="Municipio_idMunicipio" placeholder="Municipio_idMunicipio" class = "form-control">
+                </div>
+                <button type="submit" class="btn btn-primary ">
+                    Guardar vivienda
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/_footer') %>
