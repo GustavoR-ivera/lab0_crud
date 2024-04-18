@@ -5,7 +5,10 @@ const mysql = require("mysql2");
 const myConnection = require("express-myconnection");
 
 // import routes
+
+const municipioRoutes = require('./routes/municipio.routes.js');
 const personaRoutes = require('./routes/persona');
+
 
 //initializations
 const app = express();  
@@ -21,7 +24,7 @@ app.use(morgan('dev'));
 //iniciar servidor mysql y configurar bd
 app.use(myConnection(mysql, {
     host: 'localhost',
-    user: 'root',
+    user: 'admin',
     password: 'admin',
     port: 3306,
     database: 'lab0_crud'
@@ -31,12 +34,17 @@ app.use(express.urlencoded({extended: false})); //para recibir datos de formular
 
 
 //pagina principal
+
+//routes
+app.use('/municipios', municipioRoutes); //rutas modulo personas
+=======
 app.get('/', (req, res) => {
     res.render('principal_page.ejs');
 }); 
 
 //routes
 app.use('/personas', personaRoutes); //rutas modulo personas
+
 
 
 

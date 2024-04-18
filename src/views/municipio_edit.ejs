@@ -1,0 +1,66 @@
+<%- include("partials/_header") %>
+
+
+
+
+<div class="col-md-5">
+  <div class="card-body">
+    <form action="/municipios/update/<%= data.idPersona %>" method="POST">
+
+      <h2>Nombre Municipio</h2>
+      <input
+        type="text"
+        name="nombre_municipio"
+        value="<%= data.nombre_municipio %>"
+        class="form-control mb-2"
+        autofocus
+      ></input>
+
+      <h2>Nombre Departamento</h2>
+      <input
+        type="text"
+        name="nombre_depto"
+        value="<%= data.nombre_depto %>"
+        class="form-control mb-2"
+      ></input>
+
+      <h2>Fecha Fundacion</h2>
+      <input
+        type="datetime"
+        name="fecha_fundacion"
+        value="<%= data.fecha_fundacion %>"
+        class="form-control mb-2"
+      ></input>
+      
+
+      <h2>Colores Bandera</h2>
+      <input
+        type="text"
+        name="colores_bandera"
+        value="<%= data.colores_bandera %>"
+        class="form-control mb-2"
+      ></input>
+      
+      <h2>Nombre Himno Oficial</h2>
+      <input
+        type="text"
+        name="nombre_himno_oficial"
+        
+        value="<%= data.nombre_himno_oficial %>"
+        class="form-control mb-2"
+      ></input>
+
+      <h2>Id Persona Gobernante</h2>
+      <input
+        type="number"
+        name="idPersona_gobernante"
+        value="<%= data.idPersona_gobernante %>"
+        class="form-control mb-2"
+      ></input>
+
+      <button type="submit" class="btn btn-info">editar Municipio</button>
+    </form>
+  </div>
+</div>
+</div>
+</div>

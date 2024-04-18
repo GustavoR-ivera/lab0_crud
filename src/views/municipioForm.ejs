@@ -1,0 +1,55 @@
+<%- include("partials/_header") %>
+
+
+<div class="col-md-5">
+    <div class="card-body">
+      <form action="/municipios/add" method="POST">
+        <input
+          type="text"
+          name="nombre_municipio"
+          placeholder="nombre_municipio"
+          class="form-control mb-2"
+          autofocus
+        />
+        <input
+          type="text"
+          name="nombre_depto"
+          placeholder="nombre_depto"
+          class="form-control mb-2"
+        />
+        <input
+          type="datetime"
+          name="fecha_fundacion"
+          placeholder="fecha_fundacion"
+          class="form-control mb-2"
+        />
+
+        <input
+          type="text"
+          name="colores_bandera"
+          placeholder="colores_bandera"
+          class="form-control mb-2"
+        />
+
+        <input
+          type="text"
+          name="nombre_himno_oficial"
+          placeholder="nombre_himno_oficial"
+          class="form-control mb-2"
+        />
+
+        <input
+          type="number"
+          name="idPersona_gobernante"
+          placeholder="idPersona_gobernante"
+          class="form-control mb-2"
+        />
+
+        <button type="submit" class="btn btn-info">guardar Municipio</button>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<%- include("partials/_footer") %>
