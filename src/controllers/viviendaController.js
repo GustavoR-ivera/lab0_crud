@@ -38,7 +38,7 @@ controller.delete = (req, res) => {
 
     req.getConnection((err, conn) =>{
         conn.query('DELETE FROM vivienda Where idVivienda = ?', [id], (err, rows)=>{
-            res.redirect('/');
+            res.redirect('/viviendas');
         }); 
     });
 }
