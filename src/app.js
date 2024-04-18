@@ -5,7 +5,10 @@ const mysql = require("mysql2");
 const myConnection = require("express-myconnection");
 
 // import routes
+
 const municipioRoutes = require('./routes/municipio.routes.js');
+const personaRoutes = require('./routes/persona');
+
 
 //initializations
 const app = express();  
@@ -31,12 +34,17 @@ app.use(express.urlencoded({extended: false})); //para recibir datos de formular
 
 
 //pagina principal
-// app.get('/', (req, res) => {
-//     res.render('municipio.ejs');
-// }); 
 
 //routes
 app.use('/municipios', municipioRoutes); //rutas modulo personas
+=======
+app.get('/', (req, res) => {
+    res.render('principal_page.ejs');
+}); 
+
+//routes
+app.use('/personas', personaRoutes); //rutas modulo personas
+
 
 
 
