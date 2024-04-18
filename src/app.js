@@ -31,7 +31,7 @@ app.use(myConnection(mysql, {
 app.use(express.urlencoded({extended: false}));
 
 //routes
-app.use('/', viviendaRoutes);
+app.use('/viviendas', viviendaRoutes);
 
 
 //static files

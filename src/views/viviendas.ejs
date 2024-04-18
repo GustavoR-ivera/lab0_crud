@@ -1,11 +1,10 @@
 <%- include('partials/_header') %>
 
-<a href="formulario_registro_vivienda.ejs"></a>
-
 <div class = "container">
     <div class = "row mt-5">
         <div class = "col-md-7">
             <table class = "table table-bordered table-hover">
+                <a href="/viviendas/formulario_registro">Registrar nueva vivienda</a>
                 <thead>
                     <th>idVivienda</th>
                     <th>fecha_construccion</th>
@@ -24,7 +23,7 @@
                         <%for(var i = 0; i < data.length; i++) {%>
                         <tr>
                             <td><%= (i + 1)%></td>
-                            <td><%= data[i].fecha_construccion%></td>
+                            <td><%= data[i].fecha_construccion.toISOString().split('T')[0]%></td>
                             <td><%= data[i].direccion_primaria%></td>
                             <td><%= data[i].direccion_secundaria%></td>
                             <td><%= data[i].num_pisos%></td>
@@ -35,8 +34,8 @@
                             <td><%= data[i].tiene_terraza%></td>
                             <td><%= data[i].municipio_idMunicipio%></td>
                             <td>
-                                <a href = "/delete/<%= data[i].idVivienda%>" class ="btn btn-danger">Eliminar</a>
-                                <a href ="/update/<%= data[i].idVivienda%>" class ="btn btn-info">Modificar</a>
+                                <a href = "/viviendas/delete/<%= data[i].idVivienda %>" class ="btn btn-danger">Eliminar</a>
+                                <a href = "/viviendas/update/<%= data[i].idVivienda %>" class ="btn btn-info">Modificar</a>
                             </td>
                         </tr>
                         <%}%>
@@ -45,47 +44,7 @@
             </table>
 
         </div>
-        <div class ="col-md-5">
-            <div class = "card">
-                <div class = "card-body">
-                    <form action="/add" method="post">
-                        <div class="form-group">
-                            <input type="date" name="fecha_construccion" placeholder="Fecha de construcción" class = "form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="direccion_primaria" placeholder="Direccion primaria" class = "form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="direccion_secundaria" placeholder="Direccion secundaria" class = "form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="number" name="num_pisos" placeholder="Número de pisos" class = "form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="number" name="num_habitaciones" placeholder="Número de habitaciones" class = "form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="number" name="num_banos" placeholder="Número de baños" class = "form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="tiene_garage" placeholder="¿Tiene garage?" class = "form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="tiene_patio" placeholder="¿Tiene patio?" class = "form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="tiene_terraza" placeholder="¿Tiene terraza?" class = "form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="number" name="Municipio_idMunicipio" placeholder="Municipio_idMunicipio" class = "form-control">
-                        </div>
-                        <button type="submit" class="btn btn-primary ">
-                            Guardar vivienda
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
+        
     </div>
 </div>
 
