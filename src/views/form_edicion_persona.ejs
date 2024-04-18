@@ -1,0 +1,113 @@
+<%- include("partials/_header"); %>
+
+<!--form para edicion de personas-->
+
+<!-- validar campo DNI -->
+<script>
+    function handleChange() {
+        let tipo_doc = document.getElementById("tipo_doc").value;
+        let pattern = "";
+        if (tipo_doc === "Cedula colombiana") {
+            pattern = "[0-9]{8,10}";
+        } else if (tipo_doc === "Pasaporte") {
+            pattern = "[A-Za-z0-9]{7,20}";
+        }
+        document.getElementById("doc_identidad").pattern = pattern;
+        console.log(tipo_doc);
+    }
+</script>
+
+    <div class="card" style="align-items: center;" >
+        <div class="card-body"  style="text-align: center;">
+            <form action="/personas/actualizar_persona/<%= data.idPersona %>" method="post" > 
+                <h5>Edicion de personas</h5>
+                <div class="form-group">
+                    Tipo documento:
+                    <select id="tipo_doc" name="tipo_doc" onchange="handleChange()">
+                        <option value="Cedula colombiana">Cedula colombiana</option>
+                        <option value="Pasaporte">Pasaporte</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" 
+                    id="doc_identidad"
+                    name="doc_identidad" 
+                    placeholder="Documento de identidad" 
+                    value = "<%= data.doc_identidad %>"
+                    class="form-control"
+                    required="true"
+                    onchange="handleChange()"
+                    style="margin-bottom: 5px;">
+                </div>
+                <div class="form-group"> 
+                    <input type="text" 
+                    name="nombres" 
+                    placeholder="Nombres" 
+                    value="<%= data.nombres %>"
+                    class="form-control"
+                    required="true"
+                    pattern = "[A-Za-z]{1,40}"
+                    style="margin-bottom: 5px;">
+                </div>
+                <div class="form-group">
+                    <input type="text" 
+                    name="apellidos" 
+                    placeholder="Apellidos" 
+                    value="<%= data.apellidos %>"
+                    class="form-control"
+                    required="true"
+                    pattern = "[A-Za-z]{1,40}"
+                    style="margin-bottom: 5px;">
+                </div>
+                <div class="form-group">
+                    <input type="date" 
+                    id = "fecha_nacimiento"
+                    name="fecha_nacimiento" 
+                    placeholder="Fecha de nacimiento" 
+                    value="<%= data.fecha_nacimiento.toISOString().split('T')[0] %>"
+                    class="form-control"
+                    required="true"
+                    style="margin-bottom: 5px;">
+                </div>
+                <div class="form-group">
+                    <input type="text" 
+                    name="telefono" 
+                    placeholder="Telefono" 
+                    value="<%= data.telefono %>"
+                    class="form-control"
+                    pattern = "[0-9]{7,20}"
+                    style="margin-bottom: 5px;">
+                </div>
+                <div class="form-group">
+                    <input type="email" 
+                    name="email" 
+                    placeholder="Email" 
+                    value="<%= data.email %>"
+                    class="form-control"
+                    style="margin-bottom: 5px;">
+                </div>
+                <div class="form-group">
+                    <input type="text" 
+                    name="ocupacion" 
+                    placeholder="Ocupacion" 
+                    value="<%= data.ocupacion %>"
+                    class="form-control"
+                    pattern = "[A-Za-z0-9]{1,20}"
+                    style="margin-bottom: 5px;">
+                </div>
+                <div class="form-group">
+                    <input type="text" 
+                    name="sexo" 
+                    placeholder="Sexo" 
+                    value="<%= data.sexo %>"
+                    class="form-control"
+                    pattern = "[A-Za-z]{1,20}"
+                    style="margin-bottom: 5px;">
+                </div>
+                <button class="btn btn-primary" type="submit">Actualizar</button>
+            </form>
+        </div>
+    </div>
+
+
+<%- include("partials/_footer"); %>
