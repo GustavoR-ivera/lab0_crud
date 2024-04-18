@@ -22,7 +22,7 @@
                     <%if (data) {%>
                         <%for(var i = 0; i < data.length; i++) {%>
                         <tr>
-                            <td><%= (i + 1)%></td>
+                            <td><%= data[i].idVivienda%></td>
                             <td><%= data[i].fecha_construccion.toISOString().split('T')[0]%></td>
                             <td><%= data[i].direccion_primaria%></td>
                             <td><%= data[i].direccion_secundaria%></td>

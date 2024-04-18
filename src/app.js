@@ -9,14 +9,14 @@ const myConnection = require("express-myconnection");
 
 const municipioRoutes = require('./routes/municipio.routes.js');
 const personaRoutes = require('./routes/persona');
+const viviendaRoutes = require('./routes/vivienda')
 
 
 //initializations
 const app = express();  
 
 
-//importing routes
-const viviendaRoutes = require('./routes/vivienda')
+
 
 //settings
 app.set('port', process.env.PORT || 3000);
@@ -49,6 +49,8 @@ app.get('/', (req, res) => {
 
 //routes
 app.use('/personas', personaRoutes); //rutas modulo personas
+app.use('/viviendas', viviendaRoutes); //rutas modulo personas
+
 
 
 

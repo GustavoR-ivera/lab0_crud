@@ -47,7 +47,7 @@ controller.save = (req, res) =>{
 
     req.getConnection((err, conn)=>{
         conn.query('INSERT INTO vivienda set ?', [data], (err, vivienda) =>{
-            console.log(vivienda);
+            console.log(err);
             res.redirect('/viviendas/');
         });
     });
